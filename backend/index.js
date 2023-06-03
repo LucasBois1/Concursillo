@@ -31,5 +31,5 @@ while (obsConnected == false) {
     console.error('Error Connecting to OBS')
     obsConnected = false
   });
-  await sleep(1000)
+  await sleep(10000)
 }
