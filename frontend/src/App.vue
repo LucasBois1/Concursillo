@@ -13,13 +13,14 @@
       <img src="./assets/Logo.png" alt="logo" class="w-80 drop-shadow-md">
       <div class="flex">
         <div class="px-2 py-2 mt-4 me-4 h-fit w-fit rounded-full" style="background-color: rgba(0, 0, 0, 0.479);">
-          <button class="relative rounded-full border-black border-4 p-2 bg-white drop-shadow-md">
-            <svg xmlns="http://www.w3.org/2000/svg" class="opacity-30" height="1.5em" viewBox="0 0 448 512"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></svg>
-            <span class="fixed top-100 left-50 opacity-100 z-40">
-              <!-- LOCKED -->
-              <svg xmlns="http://www.w3.org/2000/svg" height="0.75em" viewBox="0 0 448 512"><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg>
-            </span>
-          </button>
+          <div class="relative">
+            <button class="rounded-full border-black border-4 p-2 bg-white drop-shadow-md" v-on:click="this.modal = !this.modal">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></svg>
+            </button>
+            <!-- <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 opacity-100 ">
+              <svg xmlns="http://www.w3.org/2000/svg" class="fill-white" height="0.75em" viewBox="0 0 448 512"><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg>
+            </span> -->
+          </div>
         </div>
         <div class="flex items-start px-2 py-2 mt-4 me-4 h-fit rounded-full" style="background-color: rgba(0, 0, 0, 0.479);">
           <button class="rounded-full border-black border-4 p-2 me-2 bg-white drop-shadow-md">
@@ -37,5 +38,45 @@
         </div>
       </div>
     </div>
+
+    <!-- MODAL -->
+    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" v-show="this.modal">
+      <div class="fixed inset-0 transition-opacity"></div>
+      <div class="fixed inset-x-0 z-40 overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div class="relative transform overflow-hidden rounded-lg outline outline-gray-900/50 outline-offset-2 outline-4 bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+            <div class="bg-gray-900 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                  <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                  </svg>
+                </div>
+                <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                  <h3 class="text-base font-semibold leading-6 text-gray-100" id="modal-title">Deactivate account</h3>
+                  <div class="mt-2">
+                    <p class="text-sm text-gray-300">Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-900 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+              <button v-on:click="this.modal = !this.modal" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        "modal": false
+			}
+		}
+  }
+</script>
