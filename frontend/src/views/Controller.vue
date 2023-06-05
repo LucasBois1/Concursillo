@@ -1,6 +1,21 @@
 <template>
-  <div class="animate__animated animate__backInDown animate__slow">
+  <div class="flex animate__animated animate__backInDown animate__slow">
     <img src="../assets/Logo.png" alt="logo" class="w-60 mx-auto drop-shadow-md">
+  </div>
+  
+  <div class="absolute top-0 right-0 mr-8 mt-8 lg:mr-20 animate__animated animate__fadeIn animate__slow animate__delay-2s">
+    <span v-if="this.online" class="inline-flex justify-center items-center rounded-full h-2 w-2 mx-auto bg-green-600">
+      <span class="animate-ping h-2 w-2 p-2 rounded-full bg-green-400 opacity-75 duration-2s"></span>
+    </span>
+    <span v-else class="inline-flex justify-center items-center rounded-full h-2 w-2 mx-auto bg-red-600">
+      <span class="animate-ping duration-100 h-2 w-2 p-2 rounded-full bg-red-400 opacity-75 duration-2s"></span>
+    </span>
+  </div>
+
+  <div class="absolute top-0 left-0 ml-4 mt-5 lg:ml-20 animate__animated animate__fadeIn animate__slow animate__delay-2s">
+    <button v-if="!this.online" v-on:click="this.reconnectWs()" class="flex justify-center items-center rounded-lg border-black bg-white border-4 p-2 drop-shadow-md antialiased font-bold">
+      <svg xmlns="http://www.w3.org/2000/svg" id="reconnectSvg" class="" height="1em" viewBox="0 0 512 512"><path d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H336c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V448c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H176c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/></svg>
+    </button>
   </div>
 
   <!-- MODAL -->
@@ -68,10 +83,10 @@
         <!-- ACCIONES -->
         <button v-on:click="this.confirmAnswer()" class="flex justify-center items-center rounded-lg border-green-400 bg-green-100 border-4 p-2 drop-shadow-md antialiased font-bold">
           <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
-       </button>
+        </button>
         <button v-on:click="this.unselectAnswer()" class="flex justify-center items-center rounded-lg border-yellow-400 bg-yellow-100 border-4 p-2 drop-shadow-md antialiased font-bold">
           <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
-       </button>
+        </button>
       </div>
     </div>
 
@@ -98,7 +113,7 @@
     <div class="row">
       <div class="grid relative left-1/2 transform -translate-x-1/2 grid-cols-3 gap-4 mb-4 p-4 rounded-2xl w-11/12" style="background-color: rgba(0, 0, 0, 0.25);">
         <!-- RESPUESTAS -->
-        <a href="/controller" class="flex justify-center items-center rounded-lg border-black border-4 p-2 bg-white drop-shadow-md antialiased font-bold min-h-[4rem]">
+        <a href="/" class="flex justify-center items-center rounded-lg border-black border-4 p-2 bg-white drop-shadow-md antialiased font-bold min-h-[4rem]">
           <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>
         </a>
         <a href="/stats" class="flex justify-center items-center rounded-lg border-black border-4 p-2 bg-white drop-shadow-md antialiased font-bold min-h-[4rem]">
@@ -112,6 +127,15 @@
   </div>
 </template>
 
+<style>
+  .duration-4s {
+    animation-duration: 4s;
+  }
+  .duration-2s {
+    animation-duration: 2s;
+  }
+</style>
+
 <script>
   import 'animate.css';
 
@@ -120,28 +144,14 @@
       return {
         "modal": false,
         "ws": null,
+        "online": false,
         "lastSelected": null,
         "lastsubSelected": null,
         "confirmAnswerModal": false
 			}
 		},
-    created() {
-      let LocalIP = '192.168.0.85'
-      this.ws = new WebSocket('ws://'+LocalIP+':9594')
-    },
     mounted() {
-      var ctx = this
-
-      setInterval(() => {
-        ctx.ws.send('ping')
-      }, 35000);
-
-      ctx.ws.onmessage = (event) => {
-        console.log(event.data);
-      };
-      ctx.ws.onopen = () => {
-        ctx.ws.send("Im a controller");
-      };
+      this.connectWs()
     },
     methods: {
       selectAnswer(respuestaSeleccionada) {
@@ -182,6 +192,57 @@
         this.lastsubSelected = null
 
         this.ws.send('unselect')
+      },
+
+      checkWsStatus() {
+        if (this.ws.readyState == WebSocket.CLOSED) {
+          if (this.online) {
+            this.online = !true
+          }
+        } else if (this.ws.readyState == WebSocket.OPEN) {
+          if (!this.online) {
+            this.online = true
+          }
+          this.ws.send('ping')
+        }
+      },
+
+      async reconnectWs() {
+        let reconnectSvg = document.getElementById('reconnectSvg')
+        reconnectSvg.classList.add('animate-spin','duration-4s')
+        this.connectWs()
+      },
+
+      async connectWs() {
+        let LocalIP = window.location.hostname
+        let ctx = this;
+        this.ws = new WebSocket('ws://'+LocalIP+':9594')
+ 
+        let keepAlive = setInterval(() => {
+          // KEEP ALIVE
+          if (ctx.ws.readyState == WebSocket.OPEN) {
+            ctx.ws.send('ping')
+          }
+        }, 35000);
+
+        this.ws.onmessage = (event) => {
+          console.log(event.data);
+        };
+
+        this.ws.onopen = () => {
+          try {
+            ctx.ws.send("Im a controller");
+            ctx.online = true
+          } catch (error) {
+            console.log(error)
+          }
+        };
+
+        this.ws.onclose = () => {
+          ctx.checkWsStatus()
+          ctx.ws = null
+          clearInterval(keepAlive)
+        }
       },
 
       confirmAnswer() {
