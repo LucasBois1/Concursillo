@@ -100,20 +100,20 @@
         </button>
         
         <!-- RESPUESTAS -->
-        <button class="rounded-tl-full rounded-bl-full rounded-br-full border-black border-4 p-2 bg-white drop-shadow-md text-xl antialiased font-bold min-h-[2rem]">
-          <span class="absolute -bottom-50 -left-4 z-20 bg-white px-2 rounded-full border-black border-4 text-lg">A</span>
+        <button id="respuestaA" class="rounded-tl-full rounded-bl-full rounded-br-full border-black border-4 p-2 bg-white drop-shadow-md text-xl antialiased font-bold min-h-[2rem]">
+          <span id="subrespuestaA" class="absolute -bottom-50 -left-4 z-20 bg-white px-2 rounded-full border-black border-4 text-lg">A</span>
           RESPUESTA 1
         </button>
-        <button class="rounded-tl-full rounded-bl-full rounded-br-full border-black border-4 p-2 bg-white drop-shadow-md text-xl antialiased font-bold min-h-[2rem]">
-          <span class="absolute -bottom-50 -left-4 z-20 bg-white px-2 rounded-full border-black border-4 text-lg">B</span>
+        <button id="respuestaB" class="rounded-tl-full rounded-bl-full rounded-br-full border-black border-4 p-2 bg-white drop-shadow-md text-xl antialiased font-bold min-h-[2rem]">
+          <span id="subrespuestaB" class="absolute -bottom-50 -left-4 z-20 bg-white px-2 rounded-full border-black border-4 text-lg">B</span>
           RESPUESTA 2
         </button>
-        <button class="rounded-tl-full rounded-bl-full rounded-br-full border-black border-4 p-2 bg-white drop-shadow-md text-xl antialiased font-bold min-h-[2rem]">
-          <span class="absolute -bottom-50 -left-4 z-20 bg-white px-2 rounded-full border-black border-4 text-lg">C</span>
+        <button id="respuestaC" class="rounded-tl-full rounded-bl-full rounded-br-full border-black border-4 p-2 bg-white drop-shadow-md text-xl antialiased font-bold min-h-[2rem]">
+          <span id="subrespuestaC" class="absolute -bottom-50 -left-4 z-20 bg-white px-2 rounded-full border-black border-4 text-lg">C</span>
           RESPUESTA 3
         </button>
-        <button class="rounded-tl-full rounded-bl-full rounded-br-full border-black border-4 p-2 bg-white drop-shadow-md text-xl antialiased font-bold min-h-[2rem]">
-          <span class="absolute -bottom-50 -left-4 z-20 bg-white px-2 rounded-full border-black border-4 text-lg">D</span>
+        <button id="respuestaD" class="rounded-tl-full rounded-bl-full rounded-br-full border-black border-4 p-2 bg-white drop-shadow-md text-xl antialiased font-bold min-h-[2rem]">
+          <span id="subrespuestaD" class="absolute -bottom-50 -left-4 z-20 bg-white px-2 rounded-full border-black border-4 text-lg">D</span>
           RESPUESTA 4
         </button>
       </div>
@@ -122,9 +122,8 @@
 </template>
 
 <style scoped>
-:root {
-  color: #000000;
-  background-color: #00ff00;
+body {
+  background-color: #00ff00 !important;
 }
 </style>
 
@@ -140,13 +139,39 @@
 		},
     mounted() {
       let wsSocket = new WebSocket('ws://localhost:9594')
+      let lastSelected = null
+      let lastsubSelected = null
 
       setInterval(() => {
         wsSocket.send('ping')
-      }, 35000);
+      }, 45000);
 
       wsSocket.onmessage = (event) => {
-        console.log(event.data);
+        let data = event.data
+
+        if (data == 'A' || data == 'B' || data == 'C' || data == 'D') {
+          if (lastSelected != null) {
+            lastSelected.classList.remove("border-yellow-600");
+            lastSelected.classList.add("border-black");
+          }
+          if (lastsubSelected != null) {
+            lastsubSelected.classList.remove("border-yellow-600");
+            lastsubSelected.classList.add("border-black");
+          }
+
+          let _res = document.getElementById('respuesta'+String(data))
+          _res.classList.add("border-yellow-600");
+          _res.classList.remove("border-black");
+          
+          let _subres = document.getElementById('subrespuesta'+String(data))
+          _subres.classList.add("border-yellow-600");
+          _subres.classList.remove("border-black");
+
+          lastSelected = _res
+          lastsubSelected = _subres
+        } else if (event.data != 'pong') {
+          console.log(event.data);
+        }
       };
 
       wsSocket.onopen = (event) => {
