@@ -75,11 +75,11 @@
         <!-- STEPS -->
         <div class="flex items-center col-span-2">
           <div class="flex items-center">
-            <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-white bg-yellow-900 border-yellow-600">
+            <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-white bg-gray-900 border-gray-600">
               1
             </div>
           </div>
-          <div class="flex-auto border-t-4 transition duration-500 ease-in-out border-yellow-600"></div>
+          <div class="flex-auto border-t-4 transition duration-500 ease-in-out border-gray-600"></div>
           <div class="flex items-center text-black relative">
             <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black bg-yellow-400 border-yellow-600">
               <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 border-x-8 border-x-transparent border-t-[12px] border-t-yellow-600"></div>
@@ -110,7 +110,7 @@
               6
             </div>
           </div>
-          <div class="flex-auto border-t-4 transition duration-500 ease-in-out border-orange-500"></div>
+          <div class="flex-auto border-t-4 parent transition duration-500 ease-in-out border-orange-500"></div>
           <div class="flex items-center text-gray-500 relative">
             <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-black bg-white border-orange-500">
               7
@@ -175,7 +175,8 @@ body {
   export default {
     data() {
       return {
-        "modal": false
+        "modal": false,
+        "comodines": true
 			}
 		},
     mounted() {
@@ -198,32 +199,32 @@ body {
 
         if (data == 'A' || data == 'B' || data == 'C' || data == 'D') {
           if (lastSelected != null) {
-            lastSelected.classList.remove("border-yellow-600");
-            lastSelected.classList.add("border-black");
+            lastSelected.classList.remove("border-yellow-600", "bg-yellow-200");
+            lastSelected.classList.add("border-black", "bg-white");
           }
           if (lastsubSelected != null) {
-            lastsubSelected.classList.remove("border-yellow-600");
-            lastsubSelected.classList.add("border-black");
+            lastsubSelected.classList.remove("border-yellow-600", "bg-yellow-200");
+            lastsubSelected.classList.add("border-black", "bg-white");
           }
 
           let _res = document.getElementById('respuesta'+String(data))
-          _res.classList.add("border-yellow-600");
-          _res.classList.remove("border-black");
+          _res.classList.add("border-yellow-600", "bg-yellow-200");
+          _res.classList.remove("border-black", "bg-white");
           
           let _subres = document.getElementById('subrespuesta'+String(data))
-          _subres.classList.add("border-yellow-600");
-          _subres.classList.remove("border-black");
+          _subres.classList.add("border-yellow-600", "bg-yellow-200");
+          _subres.classList.remove("border-black", "bg-white");
 
           lastSelected = _res
           lastsubSelected = _subres
         } else if (data == 'unselect') {
           if (lastSelected != null) {
-            lastSelected.classList.remove("border-yellow-600");
-            lastSelected.classList.add("border-black");
+            lastSelected.classList.remove("border-yellow-600", "bg-yellow-200");
+            lastSelected.classList.add("border-black", "bg-white");
           }
           if (lastsubSelected != null) {
-            lastsubSelected.classList.remove("border-yellow-600");
-            lastsubSelected.classList.add("border-black");
+            lastsubSelected.classList.remove("border-yellow-600", "bg-yellow-200");
+            lastsubSelected.classList.add("border-black", "bg-white");
           }
 
           lastSelected = null
