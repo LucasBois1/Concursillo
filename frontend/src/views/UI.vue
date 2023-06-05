@@ -3,11 +3,15 @@
     <img src="../assets/Logo.png" alt="logo" class="w-64 mx-auto drop-shadow-md animate__animated animate__backInDown animate__slow">
   </div>
 
+  <div  class="flex justify-center">
+    <button id="confettiButton" class="button hidden"></button>
+  </div>
+
   <div id="game">
     <div class="flex justify-between py-8 px-4">
       <img src="../assets/Logo.png" alt="logo" class="w-80 drop-shadow-md">
       <div class="flex">
-        <div class="px-2 py-2 mt-4 me-4 h-fit w-fit rounded-full" style="background-color: rgba(0, 0, 0, 0.9);">
+        <div class="px-2 py-2 mt-4 me-4 h-fit w-fit rounded-full" style="background-color: rgba(0, 0, 0, 0.6);">
           <div class="relative">
             <button class="rounded-full border-black border-4 p-2 bg-white drop-shadow-md" v-on:click="this.modal = !this.modal">
               <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></svg>
@@ -17,8 +21,8 @@
             </span> -->
           </div>
         </div>
-        <div class="flex items-start px-2 py-2 mt-4 me-4 h-fit rounded-full" style="background-color: rgba(0, 0, 0, 0.9);">
-          <button class="rounded-full border-black border-4 p-2 me-2 bg-white drop-shadow-md">
+        <div class="flex items-start px-2 py-2 mt-4 me-4 h-fit rounded-full" style="background-color: rgba(0, 0, 0, 0.6);">
+          <button class="rounded-full border-black border-4 p-2 me-2 bg-white drop-shadow-md" v-on:click="this.confetti()">
             <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"><path d="M459.1 52.4L442.6 6.5C440.7 2.6 436.5 0 432.1 0s-8.5 2.6-10.4 6.5L405.2 52.4l-46 16.8c-4.3 1.6-7.3 5.9-7.2 10.4c0 4.5 3 8.7 7.2 10.2l45.7 16.8 16.8 45.8c1.5 4.4 5.8 7.5 10.4 7.5s8.9-3.1 10.4-7.5l16.5-45.8 45.7-16.8c4.2-1.5 7.2-5.7 7.2-10.2c0-4.6-3-8.9-7.2-10.4L459.1 52.4zm-132.4 53c-12.5-12.5-32.8-12.5-45.3 0l-2.9 2.9C256.5 100.3 232.7 96 208 96C93.1 96 0 189.1 0 304S93.1 512 208 512s208-93.1 208-208c0-24.7-4.3-48.5-12.2-70.5l2.9-2.9c12.5-12.5 12.5-32.8 0-45.3l-80-80zM200 192c-57.4 0-104 46.6-104 104v8c0 8.8-7.2 16-16 16s-16-7.2-16-16v-8c0-75.1 60.9-136 136-136h8c8.8 0 16 7.2 16 16s-7.2 16-16 16h-8z"/></svg>
           </button>
           <button class="rounded-full border-black border-4 p-2 mx-2 bg-white drop-shadow-md">
@@ -63,8 +67,8 @@
       </div>
     </div>
     
-    <div class="inline justify-between absolute w-full bottom-0 py-8 px-12">
-      <div class="grid absolute bottom-0 left-1/2 transform -translate-x-1/2 grid-cols-2 gap-4 mb-4 p-8 rounded-2xl" style="background-color: rgba(0, 0, 0, 0.9);">
+    <div class="inline justify-between absolute w-full bottom-0 py-8 px-6">
+      <div class="grid absolute bottom-0 left-1/2 transform -translate-x-1/2 grid-cols-2 w-9/12 gap-4 mb-4 p-8 rounded-2xl" style="background-color: rgba(0, 0, 0, 0.6);">
         <!-- STEPS -->
         <div class="flex items-center col-span-2">
           <div class="flex items-center text-teal-600 relative">
@@ -89,6 +93,42 @@
           <div class="flex items-center text-gray-500 relative">
             <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-black bg-white border-black">
               4
+            </div>
+          </div>
+          <div class="flex-auto border-t-4 transition duration-500 ease-in-out border-black"></div>
+          <div class="flex items-center text-gray-500 relative">
+            <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-black bg-white border-black">
+              5
+            </div>
+          </div>
+          <div class="flex-auto border-t-4 transition duration-500 ease-in-out border-black"></div>
+          <div class="flex items-center text-gray-500 relative">
+            <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-black bg-white border-black">
+              6
+            </div>
+          </div>
+          <div class="flex-auto border-t-4 transition duration-500 ease-in-out border-black"></div>
+          <div class="flex items-center text-gray-500 relative">
+            <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-black bg-white border-black">
+              7
+            </div>
+          </div>
+          <div class="flex-auto border-t-4 transition duration-500 ease-in-out border-black"></div>
+          <div class="flex items-center text-gray-500 relative">
+            <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-black bg-white border-black">
+              8
+            </div>
+          </div>
+          <div class="flex-auto border-t-4 transition duration-500 ease-in-out border-black"></div>
+          <div class="flex items-center text-gray-500 relative">
+            <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-black bg-white border-black">
+              9
+            </div>
+          </div>
+          <div class="flex-auto border-t-4 transition duration-500 ease-in-out border-black"></div>
+          <div class="flex items-center text-gray-500 relative">
+            <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-black bg-white border-black">
+              10
             </div>
           </div>
         </div>
@@ -129,6 +169,7 @@ body {
 
 <script>
   import 'animate.css';
+import { withCtx } from 'vue';
 
   export default {
     data() {
@@ -137,6 +178,12 @@ body {
 			}
 		},
     mounted() {
+      var ctx = this;
+      let confetti = new Confetti("confettiButton");
+      confetti.setCount(750);
+      confetti.setSize(1.5);
+      confetti.setPower(35);
+
       let wsSocket = new WebSocket('ws://localhost:9594')
       let lastSelected = null
       let lastsubSelected = null
@@ -180,7 +227,9 @@ body {
 
           lastSelected = null
           lastsubSelected = null
-        } 
+        } else if (data == 'Confetti!') {
+          ctx.confetti();
+        }
         
         else if (event.data != 'pong') {
           console.log(event.data);
@@ -190,6 +239,12 @@ body {
       wsSocket.onopen = (event) => {
         wsSocket.send("Im The MASTER!");
       };
+    },
+    methods: {
+      confetti() {
+        document.getElementById('confettiButton').click()        
+      }
     }
+
   }
 </script>

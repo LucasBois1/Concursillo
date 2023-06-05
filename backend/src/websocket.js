@@ -33,6 +33,11 @@ function init(port = 8080) {
           element.send(String(data))
         });
       }
+      if (data == 'Confetti!') {
+        masterClients.forEach(element => {
+          element.send(String(data))
+        });
+      }
     });
   
     ws.send('Connected');
