@@ -3,6 +3,38 @@
     <img src="../assets/Logo.png" alt="logo" class="w-60 mx-auto drop-shadow-md">
   </div>
 
+  <!-- MODAL -->
+  <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" v-show="this.confirmAnswerModal">
+    <div class="fixed inset-0 bg-gray-100 bg-opacity-75 transition-opacity"></div>
+    <div class="absolute top-50 transform -translate-x-0 z-40 ">
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="relative transform overflow-hidden rounded-lg outline outline-gray-900/50 outline-offset-2 outline-4 bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+          <div class="bg-gray-900 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+            <div class="sm:flex sm:items-start">
+              <!-- <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-yellow-100 sm:mx-0 sm:h-10 sm:w-10">
+                <svg class="h-6 w-6 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                </svg>
+              </div> -->
+              <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                <h3 class="text-base font-semibold leading-6 text-gray-100" id="modal-title">Confirmar Respuesta</h3>
+                <div class="mt-2">
+                  <p class="text-sm text-gray-300">
+                    Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-900 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <button v-on:click="this.confirmAnswerModal = !this.confirmAnswerModal" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-green-200 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-green-600 hover:bg-green-50 sm:mt-0 sm:w-auto">Confirmar</button>
+            <button v-on:click="this.confirmAnswerModal = !this.confirmAnswerModal" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-200 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-red-600 hover:bg-red-50 sm:mt-0 sm:w-auto">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="w-full animate__animated animate__fadeIn animate__slow animate__delay-2s">
     <div class="row">
       <div class="grid relative left-1/2 transform -translate-x-1/2 grid-cols-2 gap-4 mb-4 p-4 rounded-2xl w-11/12" style="background-color: rgba(0, 0, 0, 0.25);">
@@ -34,10 +66,10 @@
     <div class="row">
       <div class="grid relative left-1/2 transform -translate-x-1/2 grid-cols-2 gap-4 mb-4 p-4 rounded-2xl w-11/12" style="background-color: rgba(0, 0, 0, 0.25);">
         <!-- ACCIONES -->
-        <button class="flex justify-center items-center rounded-lg border-black border-4 p-2 bg-white drop-shadow-md antialiased font-bold">
+        <button v-on:click="this.confirmAnswer()" class="flex justify-center items-center rounded-lg border-green-400 bg-green-100 border-4 p-2 drop-shadow-md antialiased font-bold">
           <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
        </button>
-        <button class="flex justify-center items-center rounded-lg border-black border-4 p-2 bg-white drop-shadow-md antialiased font-bold">
+        <button v-on:click="this.unselectAnswer()" class="flex justify-center items-center rounded-lg border-yellow-400 bg-yellow-100 border-4 p-2 drop-shadow-md antialiased font-bold">
           <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
        </button>
       </div>
@@ -80,13 +112,6 @@
   </div>
 </template>
 
-<style scoped>
-:root {
-  background-color: aliceblue !important;
-}
-
-</style>
-
 <script>
   import 'animate.css';
 
@@ -96,7 +121,8 @@
         "modal": false,
         "ws": null,
         "lastSelected": null,
-        "lastsubSelected": null
+        "lastsubSelected": null,
+        "confirmAnswerModal": false
 			}
 		},
     created() {
@@ -140,6 +166,26 @@
 
         this.lastSelected = _res
         this.lastsubSelected = _subres
+      },
+
+      unselectAnswer() {
+        if (this.lastSelected != null) {
+          this.lastSelected.classList.remove("border-yellow-600");
+          this.lastSelected.classList.add("border-black");
+        }
+        if (this.lastsubSelected != null) {
+          this.lastsubSelected.classList.remove("border-yellow-600");
+          this.lastsubSelected.classList.add("border-black");
+        }
+
+        this.lastSelected = null
+        this.lastsubSelected = null
+
+        this.ws.send('unselect')
+      },
+
+      confirmAnswer() {
+        this.confirmAnswerModal = true
       }
     }
   }

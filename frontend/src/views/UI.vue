@@ -121,12 +121,11 @@
   </div>
 </template>
 
-<style scoped>
+<!-- <style>
 body {
   background-color: #00ff00 !important;
 }
-</style>
-
+</style> -->
 
 <script>
   import 'animate.css';
@@ -169,7 +168,21 @@ body {
 
           lastSelected = _res
           lastsubSelected = _subres
-        } else if (event.data != 'pong') {
+        } else if (data == 'unselect') {
+          if (lastSelected != null) {
+            lastSelected.classList.remove("border-yellow-600");
+            lastSelected.classList.add("border-black");
+          }
+          if (lastsubSelected != null) {
+            lastsubSelected.classList.remove("border-yellow-600");
+            lastsubSelected.classList.add("border-black");
+          }
+
+          lastSelected = null
+          lastsubSelected = null
+        } 
+        
+        else if (event.data != 'pong') {
           console.log(event.data);
         }
       };

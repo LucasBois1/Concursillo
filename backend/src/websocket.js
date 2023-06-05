@@ -28,7 +28,7 @@ function init(port = 8080) {
         })
       }
       
-      if (data == 'A' || data == 'B' || data == 'C' || data == 'D') {
+      if (data == 'A' || data == 'B' || data == 'C' || data == 'D' || data == 'unselect') {
         masterClients.forEach(element => {
           element.send(String(data))
         });
