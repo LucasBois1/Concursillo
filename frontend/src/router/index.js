@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import HomeView from '../views/HomeView.vue'
+
+import Home from '../views/Home.vue'
 import UI from '../views/UI.vue'
 import Controller from '../views/Controller.vue'
-import Home from '../views/Home.vue'
+import Stats from '../views/Stats.vue'
+import Configuration from '../views/Configuration.vue'
 
 // import PageNotFound from '../views/PageNotFound.vue'
 
@@ -24,6 +26,16 @@ const router = createRouter({
       path: '/controller',
       name: 'controller',
       component: Controller
+    },
+    {
+      path: '/stats',
+      name: 'stats',
+      component: Stats
+    },
+    {
+      path: '/config',
+      name: 'config',
+      component: Configuration
     },
 
     // Error
