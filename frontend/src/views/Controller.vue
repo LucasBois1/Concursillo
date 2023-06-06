@@ -154,7 +154,7 @@
           </button>
           
           <!-- BOTONES -->
-          <button v-if="this.tab == 'media' && this.admin" v-on:click="this.confetti()" class="flex justify-center items-center rounded-lg border-4 border-teal-500 p-2 bg-white drop-shadow-md antialiased font-bold">
+          <button v-if="this.tab == 'media' && this.admin" id="startButton" :disabled="this.buttons.gamestart" v-on:click="this.start()" class="flex disabled:border-gray-700 disabled:bg-gray-400 justify-center items-center rounded-lg border-4 border-teal-500 p-2 bg-white drop-shadow-md antialiased font-bold">
             <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>
           </button>
           <button v-if="this.tab == 'media' && this.admin" class="flex justify-center items-center disabled rounded-lg border-4 border-teal-500 p-2 bg-white drop-shadow-md antialiased font-bold">
@@ -165,6 +165,12 @@
           </button>
           <button v-if="this.tab == 'media' && this.admin" class="flex justify-center items-center disabled rounded-lg border-4 border-teal-500 p-2 bg-white drop-shadow-md antialiased font-bold">
             <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 320 512"><path d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"/></svg>
+          </button>
+          <button v-if="this.tab == 'media' && this.admin" class="flex col-span-2 justify-center items-center disabled rounded-lg border-4 border-teal-500 p-2 bg-white drop-shadow-md antialiased font-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"><path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z"/></svg>
+          </button>
+          <button v-if="this.tab == 'media' && this.admin" class="flex disabled col-span-2 justify-center items-center disabled rounded-lg border-4 border-teal-500 p-2 bg-white drop-shadow-md antialiased font-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM224 192V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V192c0-17.7 14.3-32 32-32s32 14.3 32 32zm128 0V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V192c0-17.7 14.3-32 32-32s32 14.3 32 32z"/></svg>
           </button>
         </div>
       </div>
@@ -215,15 +221,35 @@
         "lastsubSelected": null,
         "confirmAnswerModal": false,
         "admin": false,
-        "alive": true
+        "alive": true,
+        "serverid": null,
+        "buttons": {
+          "gamestart": false
+        },
 			}
 		},
     mounted() {
+      if (localStorage.getItem('firstConnection') == undefined) {
+        localStorage.setItem('firstConnection', true)
+      }
+
       this.connectWs()
       let confetti = new Confetti("confettiButton");
       confetti.setCount(100);
       confetti.setSize(1);
       confetti.setPower(10);
+
+      let urlString = location.href
+      let paramString = urlString.split('?')[1];
+      let queryString = new URLSearchParams(paramString);
+
+      for (let pair of queryString.entries()) {
+        if (pair[0] == 'type' && pair[1] == 'admin') {
+          this.admin = true
+        } else if (pair[0] == 'id') {
+          this.serverid = pair[1]
+        }
+      }
     },
     methods: {
       selectAnswer(respuestaSeleccionada) {
@@ -270,16 +296,32 @@
         this.ws.send(JSON.stringify({
           action: 'event',
           type: 'answer-change',
-          answer: 'unselect'
+          answer: 'unselect',
+          admin: ctx.admin,
+          serverid: parseInt(ctx.serverid)
         }));
       },
 
       confetti() {
+        let ctx = this;
         this.ws.send(JSON.stringify({
           action: 'event',
-          type: 'conffeti'
+          type: 'conffeti',
+          admin: ctx.admin,
+          serverid: parseInt(ctx.serverid)
         }));
         document.getElementById('confettiButton').click()        
+      },
+      
+      start() {
+        let ctx = this;
+        this.ws.send(JSON.stringify({
+          action: 'event',
+          type: 'start',
+          admin: ctx.admin,
+          serverid: parseInt(ctx.serverid)
+        }));
+        this.buttons.gamestart = true;
       },
 
       checkWsStatus() {
@@ -321,7 +363,10 @@
           try {
             ctx.ws.send(JSON.stringify({
               action: 'connection',
-              type: 'controller'
+              type: 'controller',
+              name: 'patito',
+              admin: ctx.admin,
+              serverid: parseInt(ctx.serverid)
             }));
             ctx.online = true
           } catch (error) {

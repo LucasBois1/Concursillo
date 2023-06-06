@@ -1,40 +1,57 @@
 <template>
-  <div hidden id="pregame">
-    <img src="../assets/Logo.png" alt="logo" class="w-64 mx-auto drop-shadow-md animate__animated animate__backInDown animate__slow">
-  
-    <div class="flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-6 py-4 rounded-xl" style="background-color: rgba(0, 0, 0, 0.15);">
-      <div id="player1" class="px-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-orange-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
-        <span class="font-bold">Player1</span>
-      </div>
-      <div id="player2" class="px-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-emerald-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
-        <span class="font-bold">Player2</span>
-      </div>
-      <div id="player3" class="px-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-red-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
-        <span class="font-bold">Player3</span>
-      </div>
-      <div id="player4" class="px-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-indigo-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
-        <span class="font-bold">Player4</span>
-      </div>
-      <div id="player5" class="px-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-gray-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
-        <span class="font-bold">Player5</span>
-      </div>
-    </div>
-  </div>
-
   <div id="autoplay-unlock-overlay" class="flex justify-center">
     <button id="confettiButton" class="button hidden"></button>
   </div>
 
-  <div id="game">
+  <div id="pregame" class="transition-all">
+    <img src="../assets/Logo.png" alt="logo" class="w-64 mx-auto drop-shadow-md animate__animated animate__backInDown animate__slow">
+
+    <div  class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div class="mx-auto">
+        <div id="qrcode" class="flex items-center justify-center mx-auto"></div>
+        <div class="font-sans text-center font-bold mb-12">#{{this.serverid}}</div>
+      </div>
+      
+      <div class="flex items-center justify-center mx-auto px-6 py-4 rounded-xl" style="background-color: rgba(0, 0, 0, 0.15);">
+        <div v-for="player in this.players">
+          <div id="player1" class="px-3">
+            <svg xmlns="http://www.w3.org/2000/svg" v-if="player.admin" class="fill-yellow-700 flex items-center justify-center mx-auto drop-shadow-sm" height="0.75em" viewBox="0 0 576 512"><path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-orange-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
+            <span class="font-bold flex items-center justify-center">{{player.controllername}}</span>
+          </div>
+        </div>
+<!--         <div id="player2" class="px-3 m-auto">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-emerald-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
+          <span class="font-bold">Player2</span>
+        </div>
+        <div id="player3" class="px-3 m-auto">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-red-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
+          <span class="font-bold">Player3</span>
+        </div>
+        <div id="player4" class="px-3 m-auto">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-indigo-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
+          <span class="font-bold">Player4</span>
+        </div>
+        <div id="player5" class="px-3 m-auto">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-gray-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
+          <span class="font-bold">Player5</span>
+        </div> -->
+      </div>
+      
+      <!-- <div class="font-sans text-center font-bold my-6">Esperando al admin 😈🤑</div> -->
+
+    </div>
+  </div>
+
+  <div id="game" class="transition-all" hidden="true">
     <div class="flex justify-between py-8 px-4">
       <img src="../assets/Logo.png" alt="logo" class="w-80 drop-shadow-md">
       <!-- <div class="px-2 py-4 mt-4 h-fit w-fit rounded-full" style="background-color: rgba(0, 0, 0, 0.6);">
-        <span id="subrespuestaA" class="bg-white rounded-full font-bold px-3 py-2 border-black border-4 text-lg">60</span>
+        <span class="bg-white rounded-full font-bold px-3 py-2 border-black border-4 text-lg">60</span>
       </div> -->
       <div class="flex">
         <div class="px-2 py-2 mt-4 me-4 h-fit w-fit rounded-full" style="background-color: rgba(0, 0, 0, 0.6);">
@@ -96,7 +113,7 @@
     <div class="inline justify-between absolute w-full bottom-0 py-8 px-6">
       <div class="grid absolute bottom-0 left-1/2 transform -translate-x-1/2 grid-cols-2 w-9/12 gap-4 mb-4 p-8 rounded-2xl" style="background-color: rgba(0, 0, 0, 0.6);">
         <!-- STEPS -->
-        <div class="flex items-center col-span-2 font-mono">
+        <div class="flex items-center col-span-2">
           <div class="flex items-center">
             <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-white bg-gray-900 border-gray-600">
               1
@@ -184,31 +201,66 @@
       </div>
     </div>
   </div>
-</template>
 
-<!-- <style>
-body {
-  background-color: #00ff00 !important;
-}
-</style> -->
+  <div id="endgame" hidden="true">
+    <img src="../assets/Logo.png" alt="logo" class="w-64 mx-auto drop-shadow-md animate__animated animate__backInDown animate__slow">
+
+    <div  class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">     
+      <div class="flex px-6 py-4 rounded-xl">
+        <div id="puesto3" class="px-3 m-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-amber-700 drop-shadow-sm" height="2em" viewBox="0 0 576 512"><path xmlns="http://www.w3.org/2000/svg" d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/></svg>
+          <span class="font-bold">Player2</span>
+        </div>
+        <div id="puesto1" class="px-3 mb-24 m-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-yellow-500 drop-shadow-sm" height="2em" viewBox="0 0 576 512"><path xmlns="http://www.w3.org/2000/svg" d="M176 0H400c26.5 0 48.1 21.8 47.1 48.2c-.2 5.3-.4 10.6-.7 15.8H552c13.3 0 24 10.7 24 24c0 92.6-33.5 157-78.5 200.7c-44.3 43.1-98.3 64.8-138.2 75.8c-23.4 6.5-39.4 26-39.4 45.6c0 20.9 17 37.9 37.9 37.9H384c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32h26.1c20.9 0 37.9-17 37.9-37.9c0-19.6-15.9-39.2-39.4-45.6c-39.9-11-93.9-32.7-138.1-75.8C33.5 245 0 180.6 0 88C0 74.7 10.7 64 24 64H129.6c-.3-5.2-.5-10.4-.7-15.8C127.9 21.8 149.5 0 176 0zM133.2 112H48.9c5.1 66.3 31.1 111.2 63 142.3c22.4 21.8 48.3 37.3 73.2 48.3c-22.7-40.3-42.8-100.5-51.9-190.6zM390.8 302.6c24.9-11 50.8-26.5 73.2-48.3c32-31.1 58-76 63-142.3H442.7c-9.1 90.1-29.2 150.3-51.9 190.6zM295.2 86.5c-2.9-5.9-11.4-5.9-14.3 0l-19.2 38.9c-1.2 2.4-3.4 4-6 4.4L212.7 136c-6.6 1-9.2 9-4.4 13.6l31 30.2c1.9 1.8 2.7 4.5 2.3 7.1l-7.3 42.7c-1.1 6.5 5.7 11.5 11.6 8.4L284.3 218c2.3-1.2 5.1-1.2 7.4 0l38.4 20.2c5.9 3.1 12.7-1.9 11.6-8.4L334.4 187c-.4-2.6 .4-5.2 2.3-7.1l31-30.2c4.7-4.6 2.1-12.7-4.4-13.6l-42.9-6.2c-2.6-.4-4.9-2-6-4.4L295.2 86.5z"/></svg>
+          <span class="font-bold">Player3</span>
+        </div>
+        <div id="puesto2" class="px-3 mb-16 m-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-gray-400 drop-shadow-sm" height="2em" viewBox="0 0 576 512"><path xmlns="http://www.w3.org/2000/svg" d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/></svg>
+          <span class="font-bold">Player5</span>
+        </div>
+      </div>
+      
+      <!-- <div class="font-sans text-center font-bold my-6">Esperando al admin 😈🤑</div> -->
+
+    </div>
+  </div>
+</template>
 
 <script>
   import 'animate.css';
 
+  function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+  }
+  
   export default {
     data() {
       return {
         "modal": false,
-        "comodines": true
+        "comodines": true,
+        "game-status": 'ended',
+        "admin": null,
+        "qr": null,
+        "serverid": null,
+        "players": []
 			}
 		},
     mounted() {
       var ctx = this;
+
+      // Confetti Init
       let confetti = new Confetti("confettiButton");
       confetti.setCount(550);
       confetti.setSize(1.75);
       confetti.setPower(35);
 
+      //WebSocket Connection
       let wsSocket = new WebSocket('ws://localhost:9594')
       let lastSelected = null
       let lastsubSelected = null
@@ -254,7 +306,27 @@ body {
           lastsubSelected = null
         } else if (data == 'confetti') {
           ctx.confetti();
+        } else if (data == 'start') {
+          ctx.startGame();
+        } else if (isJson(data)) {
+          let dataJson = JSON.parse(data)
+          console.log(dataJson)
+          if (dataJson.event == 'connectedserver') {
+            this.serverid = dataJson.serverid;
+            //QR Code Init
+            this.qr = new QRCode("qrcode", {
+              text: 'http://'+location.hostname+':'+location.port+'/controller?type=admin&id='+String(ctx.serverid),
+              width: 128,
+              height: 128,
+              colorDark : "#000000",
+              colorLight : "#ffffff",
+              correctLevel : QRCode.CorrectLevel.H
+            });
+          } else if (dataJson.event == 'connectedcontroller') {
+            this.players.push(dataJson);
+          }
         }
+
         
         else if (event.data != 'pong') {
           console.log(event.data);
@@ -273,6 +345,14 @@ body {
         document.getElementById('confettiButton').click();
         var audio = new Audio('/correct.mp3');
         audio.play()     
+      },
+      startGame() {
+        //Init Game Steps
+        var pregame = document.getElementById("pregame")
+        var game = document.getElementById("game")
+
+        pregame.setAttribute("hidden", true); // Hide
+        game.removeAttribute("hidden"); // Show
       }
     }
 
