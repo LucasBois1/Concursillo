@@ -6,7 +6,7 @@
   <div id="pregame" class="transition-all">
     <img src="../assets/Logo.png" alt="logo" class="w-64 mx-auto drop-shadow-md animate__animated animate__backInDown animate__slow">
 
-    <div  class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <div  class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate__animated animate__fadeIn animate__slower animate__delay-2s">
       <div class="mx-auto">
         <div id="qrcode" class="flex items-center justify-center mx-auto"></div>
         <div class="font-sans text-center font-bold mb-12">#{{this.serverid}}</div>
@@ -231,6 +231,7 @@
         "game-status": 'pregame',
         "admin": null,
         "qr": null,
+        "ws": null,
         "serverid": null,
         "players": new Map()
 			}
@@ -315,9 +316,13 @@
             let _data = {...dataJson, classStyle: 'mx-auto '+colors[Math.floor((Math.random() * colors.length) + 0)]+' drop-shadow-sm'}
             this.players.set(dataJson.controllerid , _data);
           } else if (dataJson.event == 'disconnectedcontroller') {
+            let hasAdmin = false
             this.players.forEach((element, index) => {
-              if (element.controllername == dataJson.controllername) {
+              if (element[1].controllername == dataJson.controllername) {
                 ctx.players.delete(index)
+              }
+              if (element[1].admin == true && element[1].id != dataJson.controllerid) {
+                hasAdmin = true
               }
             });
           }
@@ -328,12 +333,19 @@
         }
       };
 
-      wsSocket.onopen = (event) => {
+      wsSocket.onopen = () => {
         wsSocket.send(JSON.stringify({
           action: 'connection',
           type: 'master'
         }));
+        ctx.ws = wsSocket
       };
+
+      wsSocket.onclose = () => {
+        ctx.checkWsStatus()
+        ctx.ws = null
+        clearInterval(keepAlive)
+      }
     },
     methods: {
       confetti() {

@@ -63,12 +63,14 @@ function init(port = 8080) {
   
               console.log("Controller",controllerData.name,"has been opened.")
 
-              serverWS.send(JSON.stringify({
-                'event': 'connectedcontroller',
-                'controllerid': parseInt(controllerData.id),
-                'controllername': controllerData.name,
-                'admin': jsonData.admin
-              }))
+              if (serverWS != undefined) {
+                serverWS.send(JSON.stringify({
+                  'event': 'connectedcontroller',
+                  'controllerid': parseInt(controllerData.id),
+                  'controllername': controllerData.name,
+                  'admin': jsonData.admin
+                }))
+              }
 
               ws.send(JSON.stringify({
                 'event': 'connected',
@@ -78,12 +80,14 @@ function init(port = 8080) {
               }))
               ws.on('close', () => {
                 let serverWS = masterClients.get(jsonData.serverid)
-                serverWS.send(JSON.stringify({
-                  'event': 'disconnectedcontroller',
-                  'controllerid': id,
-                  'controllername': controllerData.name,
-                  'admin': jsonData.admin
-                }))
+                if (serverWS != undefined) {
+                  serverWS.send(JSON.stringify({
+                    'event': 'disconnectedcontroller',
+                    'controllerid': id,
+                    'controllername': controllerData.name,
+                    'admin': jsonData.admin
+                  }))
+                }
                 controllerClients.delete(id)
               })
             }
