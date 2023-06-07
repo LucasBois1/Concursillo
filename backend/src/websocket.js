@@ -55,7 +55,8 @@ function init(port = 8080) {
                 serverid: jsonData.serverid,
                 ws: ws,
                 id: id,
-                name: name
+                name: name,
+                admin: jsonData.admin
               }
   
               controllerClients.set(id, controllerData)
@@ -76,6 +77,13 @@ function init(port = 8080) {
                 'admin': jsonData.admin
               }))
               ws.on('close', () => {
+                let serverWS = masterClients.get(jsonData.serverid)
+                serverWS.send(JSON.stringify({
+                  'event': 'disconnectedcontroller',
+                  'controllerid': id,
+                  'controllername': controllerData.name,
+                  'admin': jsonData.admin
+                }))
                 controllerClients.delete(id)
               })
             }

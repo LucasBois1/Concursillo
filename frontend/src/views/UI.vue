@@ -11,39 +11,23 @@
         <div id="qrcode" class="flex items-center justify-center mx-auto"></div>
         <div class="font-sans text-center font-bold mb-12">#{{this.serverid}}</div>
       </div>
-      
-      <div class="flex items-center justify-center mx-auto px-6 py-4 rounded-xl" style="background-color: rgba(0, 0, 0, 0.15);">
-        <div v-for="player in this.players">
-          <div id="player1" class="px-3">
-            <svg xmlns="http://www.w3.org/2000/svg" v-if="player.admin" class="fill-yellow-700 flex items-center justify-center mx-auto drop-shadow-sm" height="0.75em" viewBox="0 0 576 512"><path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-orange-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
-            <span class="font-bold flex items-center justify-center">{{player.controllername}}</span>
-          </div>
-        </div>
-<!--         <div id="player2" class="px-3 m-auto">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-emerald-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
-          <span class="font-bold">Player2</span>
-        </div>
-        <div id="player3" class="px-3 m-auto">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-red-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
-          <span class="font-bold">Player3</span>
-        </div>
-        <div id="player4" class="px-3 m-auto">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-indigo-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
-          <span class="font-bold">Player4</span>
-        </div>
-        <div id="player5" class="px-3 m-auto">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto fill-gray-600 drop-shadow-sm" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
-          <span class="font-bold">Player5</span>
-        </div> -->
+
+      <div class="my-2">
+        <span class="flex font-bold items-center justify-center" v-if="!this.admin">Esperando al Admin</span>
+        <span class="flex font-bold items-center justify-center">Esperando Jugadores</span>
       </div>
       
-      <!-- <div class="font-sans text-center font-bold my-6">Esperando al admin 😈🤑</div> -->
-
+      <div v-if="this.players.size > 0" class="flex items-center justify-center mx-auto px-6 py-4 rounded-xl" style="background-color: rgba(0, 0, 0, 0.15);">
+        <div v-for="player in this.players">
+          <div :id="'player'+player[1].controllerid" class="px-3">
+            <svg xmlns="http://www.w3.org/2000/svg" v-if="player[1].admin" class="fill-yellow-700 flex items-center justify-center mx-auto drop-shadow-sm" height="0.75em" viewBox="0 0 576 512"><path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" v-else-if="!player[1].admin" class="fill-yellow-700 opacity-0 flex items-center justify-center mx-auto drop-shadow-sm" height="0.75em" viewBox="0 0 576 512"><path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" :class="player[1].classStyle" height="2em" viewBox="0 0 640 512"><path d="M0 369.4v2.8C0 431.7 48.3 480 107.8 480c49.5 0 92.6-33.7 104.6-81.7L216 384H424l3.6 14.3c12 48 55.1 81.7 104.6 81.7C591.7 480 640 431.7 640 372.2v-2.8c0-6.3-.5-12.5-1.6-18.7L605.7 159.8c-8.6-50.2-40.9-93.2-90.3-105.5C469.5 42.9 403.8 32 320 32s-149.5 10.9-195.3 22.3C75.2 66.6 42.9 109.6 34.3 159.8L1.6 350.7C.5 356.9 0 363.1 0 369.4zM432 232a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm24-56a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zm-240-8v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V248H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V168c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg>
+            <span class="font-bold flex items-center justify-center">{{player[1].controllername}}</span>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </div>
 
@@ -122,7 +106,7 @@
           <div class="flex-auto border-t-4 transition duration-500 ease-in-out border-gray-600"></div>
           <div class="flex items-center text-black relative">
             <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black bg-yellow-400 border-yellow-600">
-              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 border-x-8 border-x-transparent border-t-[12px] border-t-yellow-600"></div>
+              <!-- <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 border-x-8 border-x-transparent border-t-[12px] border-t-yellow-600"></div> -->
               2
             </div>
           </div>
@@ -153,6 +137,9 @@
           <div class="flex-auto border-t-4 parent transition duration-500 ease-in-out border-orange-500"></div>
           <div class="flex items-center text-gray-500 relative">
             <div class="text-center align-middle rounded-full transition duration-500 ease-in-out px-4 py-2 border-4 font-black text-black bg-white border-orange-500">
+              <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 border-x-8 border-x-transparent fill-yellow-500">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></svg>
+              </div>
               7
             </div>
           </div>
@@ -220,9 +207,6 @@
           <span class="font-bold">Player5</span>
         </div>
       </div>
-      
-      <!-- <div class="font-sans text-center font-bold my-6">Esperando al admin 😈🤑</div> -->
-
     </div>
   </div>
 </template>
@@ -244,11 +228,11 @@
       return {
         "modal": false,
         "comodines": true,
-        "game-status": 'ended',
+        "game-status": 'pregame',
         "admin": null,
         "qr": null,
         "serverid": null,
-        "players": []
+        "players": new Map()
 			}
 		},
     mounted() {
@@ -318,15 +302,26 @@
               text: 'http://'+location.hostname+':'+location.port+'/controller?type=admin&id='+String(ctx.serverid),
               width: 128,
               height: 128,
-              colorDark : "#000000",
-              colorLight : "#ffffff",
-              correctLevel : QRCode.CorrectLevel.H
             });
-          } else if (dataJson.event == 'connectedcontroller') {
-            this.players.push(dataJson);
+          } else if (dataJson.event == 'connectedcontroller' && this['game-status'] == 'pregame') {
+            if (dataJson.admin == true) {
+              this.admin = true
+              this.qr.clear()
+              this.qr.makeCode('http://'+location.hostname+':'+location.port+'/controller?id='+String(ctx.serverid))
+            }
+            const colors = ['fill-orange-600', 'fill-emerald-600', 'fill-red-600', 'fill-indigo-600', 'fill-gray-600']
+            
+
+            let _data = {...dataJson, classStyle: 'mx-auto '+colors[Math.floor((Math.random() * colors.length) + 0)]+' drop-shadow-sm'}
+            this.players.set(dataJson.controllerid , _data);
+          } else if (dataJson.event == 'disconnectedcontroller') {
+            this.players.forEach((element, index) => {
+              if (element.controllername == dataJson.controllername) {
+                ctx.players.delete(index)
+              }
+            });
           }
         }
-
         
         else if (event.data != 'pong') {
           console.log(event.data);
@@ -353,6 +348,8 @@
 
         pregame.setAttribute("hidden", true); // Hide
         game.removeAttribute("hidden"); // Show
+
+        this['game-status'] = 'started'
       }
     }
 

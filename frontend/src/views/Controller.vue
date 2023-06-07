@@ -32,7 +32,7 @@
       <button id="confettiButton" class="button hidden"></button>
     </div>  
 
-    <!-- MODAL -->
+    <!-- CONFIRM ANSWER MODAL -->
     <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" v-show="this.confirmAnswerModal">
       <div class="fixed inset-0 bg-gray-100 bg-opacity-75 transition-opacity"></div>
       <div class="absolute top-50 transform -translate-x-0 z-40 ">
@@ -58,6 +58,30 @@
             <div class="bg-gray-900 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
               <button v-on:click="this.confirmAnswerModal = !this.confirmAnswerModal" type="button" class="mt-3 sm:ml-3 inline-flex w-full justify-center rounded-md bg-green-200 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-green-600 hover:bg-green-50 sm:mt-0 sm:w-auto">Confirmar</button>
               <button v-on:click="this.confirmAnswerModal = !this.confirmAnswerModal" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-200 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-red-600 hover:bg-red-50 sm:mt-0 sm:w-auto">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASK FOR USERNAME MODAL -->
+    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" v-show="this.AskForNameModal">
+      <div class="fixed inset-0 bg-gray-100 bg-opacity-90 transition-opacity"></div>
+      <div class="absolute top-50 transform -translate-x-0 z-40 w-screen">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div class="relative transform overflow-hidden rounded-lg outline outline-gray-900/50 outline-offset-2 outline-4 bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+            <div class="bg-gray-900 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                  <h3 class="text-base font-semibold leading-6 text-gray-100" id="modal-title">Nombre</h3>
+                  <div class="mt-2">
+                    <input type="text" v-model="this.username">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-900 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+              <button v-on:click="confirmUsername()" type="button" class="mt-3 sm:ml-3 inline-flex w-full justify-center rounded-md bg-green-200 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-green-600 hover:bg-green-50 sm:mt-0 sm:w-auto">Confirmar</button>
             </div>
           </div>
         </div>
@@ -216,6 +240,7 @@
         "modal": false,
         "ws": null,
         "tab": 'inicio',
+        "username": '',
         "online": false,
         "lastSelected": null,
         "lastsubSelected": null,
@@ -223,17 +248,19 @@
         "admin": false,
         "alive": true,
         "serverid": null,
+        "AskForNameModal": false,
         "buttons": {
           "gamestart": false
         },
 			}
 		},
     mounted() {
-      if (localStorage.getItem('firstConnection') == undefined) {
-        localStorage.setItem('firstConnection', true)
+      let firstConnection = localStorage.getItem('firstConnection')
+      if (firstConnection != 'true') {
+        this.AskForNameModal = true
+        localStorage.setItem('firstConnection', 'true')
       }
 
-      this.connectWs()
       let confetti = new Confetti("confettiButton");
       confetti.setCount(100);
       confetti.setSize(1);
@@ -356,7 +383,11 @@
         }, 35000);
 
         this.ws.onmessage = (event) => {
+          var ctx = this;
           console.log(event.data);
+          if (event.data == 'confetti') {
+            ctx.confetti();
+          }
         };
 
         this.ws.onopen = () => {
@@ -364,7 +395,7 @@
             ctx.ws.send(JSON.stringify({
               action: 'connection',
               type: 'controller',
-              name: 'patito',
+              name: localStorage.getItem('username'),
               admin: ctx.admin,
               serverid: parseInt(ctx.serverid)
             }));
@@ -383,6 +414,12 @@
 
       confirmAnswer() {
         this.confirmAnswerModal = true
+      },
+
+      confirmUsername() {
+        localStorage.setItem('username', this.username);
+        this.connectWs()
+        this.AskForNameModal = false
       }
     }
   }
